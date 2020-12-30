@@ -5,23 +5,16 @@
 import transformers
 import torch
 import os
-import json
-import random
-import numpy as np
 from torch.utils.tensorboard import SummaryWriter
 from datetime import datetime
-from tqdm import tqdm
 from torch.nn import DataParallel
 import logging
-from transformers.modeling_gpt2 import GPT2Config, GPT2LMHeadModel
+from transformers.modeling_gpt2 import GPT2LMHeadModel
 from transformers import BertTokenizer
-from os.path import join, exists
-from itertools import zip_longest, chain
-from dataset import ChatBotDataSet
-from torch.utils.data import Dataset, DataLoader
+from os.path import join
+from torch.utils.data import DataLoader
 from torch.nn import CrossEntropyLoss
-from sklearn.model_selection import train_test_split
-from dataset import ChatBotDataSet
+from chatbot.dataset import ChatBotDataSet
 
 PAD = '[PAD]'
 pad_id = 0

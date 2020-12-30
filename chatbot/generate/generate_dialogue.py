@@ -4,8 +4,6 @@
 # datetime:2020/11/24 下午4:31
 
 import torch
-import os
-import argparse
 import logging
 from transformers.modeling_gpt2 import GPT2Config, GPT2LMHeadModel
 from transformers import BertTokenizer
@@ -18,7 +16,7 @@ class DialogueGenerator:
                  device,
                  vocab_path,
                  max_history_len=5,
-                 max_len=25,
+                 max_len=300,
                  repetition_penalty=1.0,
                  temperature=1,
                  topk=40,
@@ -114,6 +112,7 @@ class DialogueGenerator:
 
         history.append(generate_list)
         text2 = self.tokenizer.convert_ids_to_tokens(generate_list)
+        text2 = "".join(text2)
         return text2, history
 
 
