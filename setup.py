@@ -2,7 +2,6 @@
 # -*- coding:utf-8 -*-
 # author:cch
 # datetime:2020/12/7 下午5:09
-# email:chenchanghao@navinfo.com
 
 import os
 from setuptools import setup, find_packages, Extension
@@ -36,7 +35,6 @@ setup(name='gpt_service',
 
       keywords="gpt2 service",
       author="Simulation Team",
-      author_email="chenchanghao@navinfo.com",
       license="MIT",
       packages=find_packages(),
       # platforms='python 3.5',
