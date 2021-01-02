@@ -53,7 +53,8 @@ class DialogueGenerator:
         logger.setLevel(logging.INFO)
 
         formatter = logging.Formatter(
-            '%(asctime)s - %(levelname)s - %(message)s')
+            '%(asctime)s - %(levelname)s - %(message)s'
+        )
 
         # 创建一个handler，用于写入日志文件
         file_handler = logging.FileHandler(
@@ -88,7 +89,7 @@ class DialogueGenerator:
             logits[indices_to_remove] = filter_value
         return logits
 
-    def chat(self, text: str, history: list):
+    def chat(self, text: str, history: list = None):
         history.append(self.tokenizer.encode(text))
         input_ids = [self.tokenizer.cls_token_id]
         for history_id, history_utr in enumerate(history[-self.max_history_len:]):
@@ -115,16 +116,19 @@ class DialogueGenerator:
         text2 = "".join(text2)
         return text2, history
 
+    def write_log(self, msg):
+        self.logger.info(msg)
 
-if __name__ == '__main__':
-    model_path = "/home/cch/PycharmProjects/nlg_chatbot/dialogue_model"
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    vocab_path = "vocabulary/vocab_small.txt"
-    dialogue_generator = DialogueGenerator(model_path, device, vocab_path)
-    history = []
-    while True:
-        text = input("user input text:")
-        if text == "q":
-            break
-        answer, history = dialogue_generator.chat(text=text, history=history)
-        print("chat bot answer: ", "".join(answer))
+
+# if __name__ == '__main__':
+#     model_path = "/home/cch/PycharmProjects/nlg_chatbot/dialogue_model"
+#     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+#     vocab_path = "vocabulary/vocab_small.txt"
+#     dialogue_generator = DialogueGenerator(model_path, device, vocab_path)
+#     history = []
+#     while True:
+#         text = input("user input text:")
+#         if text == "q":
+#             break
+#         answer, history = dialogue_generator.chat(text=text, history=history)
+#         print("chat bot answer: ", "".join(answer))

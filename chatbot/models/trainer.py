@@ -207,12 +207,12 @@ class Trainer:
                         raise exception
             self.logger.info('saving model for epoch {}'.format(epoch + 1))
 
-            model_path = join(self.dialogue_model_output_path, 'model_epoch{}.bin'.format(epoch + 1))
+            # model_path = join(self.dialogue_model_output_path, 'model_epoch{}.bin'.format(epoch + 1))
             if not os.path.exists(self.dialogue_model_output_path):
                 os.mkdir(self.dialogue_model_output_path)
             if (epoch + 1) % 5 == 0:
                 model_to_save = self.model.module if hasattr(self.model, 'module') else self.model
-                model_to_save.save_pretrained(model_path)
+                model_to_save.save_pretrained(self.dialogue_model_output_path)
             self.logger.info('epoch {} finished'.format(epoch + 1))
             epoch_finish_time = datetime.now()
             self.logger.info('time for one epoch: {}'.format(epoch_finish_time - epoch_start_time))

@@ -25,7 +25,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # Maybe here use >= or ~= is more suitable.
-with open("requirments.txt", "r") as file:
+with open("requirements.txt", "r") as file:
     install_requires = file.readlines()
 
 setup(name='gpt_service',

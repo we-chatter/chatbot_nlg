@@ -8,7 +8,7 @@ import random
 import numpy as np
 import argparse
 
-from chatbot.trainer import Trainer
+from chatbot.models.trainer import Trainer
 
 PAD = '[PAD]'
 pad_id = 0
